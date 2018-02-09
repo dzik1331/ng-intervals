@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('ranges App', () => {
+describe('intervals App', () => {
   let page: AppPage;
 
   beforeEach(() => {

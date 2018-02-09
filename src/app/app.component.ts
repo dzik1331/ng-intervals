@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Intervals} from './intervals/intervals.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+
+  public intervals: Intervals[] = [
+    {
+      lower: 0,
+      lowerClose: true,
+      upper: 0.3456,
+      upperClose: true
+    },
+    {
+      lower: 0.5,
+      lowerClose: true,
+      upper: 0.8234567342,
+      upperClose: true
+    }
+  ];
 }

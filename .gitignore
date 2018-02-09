@@ -5,10 +5,10 @@
 /dist-server
 /tmp
 /out-tsc
-
+e2e
 # dependencies
 /node_modules
-
+.ng_pkg_build
 # IDEs and editors
 /.idea
 .project
@@ -17,6 +17,7 @@
 *.launch
 .settings/
 *.sublime-workspace
+tslint.json
 
 # IDE - VSCode
 .vscode/*

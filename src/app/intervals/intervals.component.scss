@@ -1,0 +1,34 @@
+.intervals-container {
+  width: 100%;
+  display: table;
+  .intervals-handler {
+    min-height: 10px;
+    width: 90%;
+    display: table-cell;
+    background: aliceblue;
+    border: 0.5px solid black;
+    position: relative;
+    overflow: hidden;
+    .interval-child {
+      position: absolute;
+      opacity: 0.8;
+      height: 100%;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+    }
+  }
+
+  .min-max {
+    font-weight: bold;
+    display: table-cell;
+    text-align: center;
+  }
+
+  #min {
+    @extend .min-max;
+  }
+
+  #max {
+    @extend .min-max;
+  }
+}
