@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 
 @Component({
-  selector: 'ranges',
+  selector: 'intervals',
   templateUrl: './intervals.component.html',
   styleUrls: ['./intervals.component.scss']
 })
@@ -10,7 +10,7 @@ import {AfterViewInit, Component, Input, OnInit, Renderer2, ViewChild} from '@an
 export class IntervalsComponent implements OnInit, AfterViewInit {
   @Input() min;
   @Input() max;
-  @Input() ranges: Intervals[] = [];
+  @Input() intervals: Intervals[] = [];
   @ViewChild('intervalsHandler') intervalsHandler;
 
   constructor(private renderer: Renderer2) {
@@ -20,7 +20,7 @@ export class IntervalsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.addInterval(this.ranges);
+    this.addInterval(this.intervals);
   }
 
   private addInterval(intervals) {

@@ -9,5 +9,5 @@ import {IntervalsComponent} from './intervals.component';
   declarations: [IntervalsComponent],
   exports: [IntervalsComponent]
 })
-export class RangesModule {
+export class IntervalsModule {
 }

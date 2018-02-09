@@ -15,7 +15,7 @@ import { BrowserModule } from '@angular/platform-browser';
  
  
  import { AppComponent } from './app.component';
- import {RangesModule} from 'ng-ranges';
+ import {IntervalsModule} from 'ng-ranges';
  
  
  @NgModule({
@@ -24,7 +24,7 @@ import { BrowserModule } from '@angular/platform-browser';
    ],
    imports: [
      BrowserModule,
-     RangesModule
+     IntervalsModule
    ],
    providers: [],
    bootstrap: [AppComponent]
@@ -63,7 +63,7 @@ export class AppComponent {
 
 ##### View
 ```html
-<ranges [min]="0" [max]="1" [ranges]="intervals"></ranges>
+<intervals [min]="0" [max]="1" [intervals]="intervals"></intervals>
 ```
  
 

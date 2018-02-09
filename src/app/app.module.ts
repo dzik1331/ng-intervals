@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import {RangesModule} from './intervals/intervals.module';
+import {IntervalsModule} from './intervals/intervals.module';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import {RangesModule} from './intervals/intervals.module';
   ],
   imports: [
     BrowserModule,
-    RangesModule
+    IntervalsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,10 @@
 {
   "name": "ng-intervals",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.1b",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dzik1331/ng-intervals"
+  },
   "license": "MIT",
   "scripts": {
     "ng": "ng",
