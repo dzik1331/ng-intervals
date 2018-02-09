@@ -1,5 +1,5 @@
 # Intervals
-Show used intervals on asis
+Show used intervals on axis
 
 # Install
 `npm install ng-intervals`
