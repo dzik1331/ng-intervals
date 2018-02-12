@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'intervals',
@@ -11,15 +12,18 @@ export class IntervalsComponent implements OnInit, AfterViewInit {
   @Input() min;
   @Input() max;
   @Input() intervals: Intervals[] = [];
+  @Input() styleOptions: StyleOptions = {};
   @ViewChild('intervalsHandler') intervalsHandler;
 
   constructor(private renderer: Renderer2) {
   }
 
   ngOnInit() {
+    this.setDefaultStyle();
   }
 
   ngAfterViewInit(): void {
+    this.renderer.setStyle(this.intervalsHandler.nativeElement, 'background', this.styleOptions.mainIntervalColor);
     this.addInterval(this.intervals);
   }
 
@@ -35,14 +39,22 @@ export class IntervalsComponent implements OnInit, AfterViewInit {
 
       this.renderer.setStyle(intervalDiv, 'width', width + '%');
       this.renderer.setStyle(intervalDiv, 'left', left + '%');
-      let color = this.randomColor();
-      this.renderer.setStyle(intervalDiv, 'background', color);
+      this.renderer.setStyle(intervalDiv, 'background', this.styleOptions.childIntervalColor);
       this.renderer.appendChild(this.intervalsHandler.nativeElement, intervalDiv);
     });
   }
 
-  randomColor(): string {
-    return COLORS[Math.floor(Math.random() * COLORS.length)];
+  // randomColor(): string {
+  //   return COLORS[Math.floor(Math.random() * COLORS.length)];
+  // }
+
+  private setDefaultStyle() {
+    isNullOrUndefined(this.styleOptions.mainIntervalColor) ? this.setOptionValue('mainIntervalColor', 'blue') : null;
+    isNullOrUndefined(this.styleOptions.childIntervalColor) ? this.setOptionValue('childIntervalColor', 'red') : null;
+  }
+
+  private setOptionValue(key, value) {
+    this.styleOptions[key] = value;
   }
 }
 
@@ -53,6 +65,11 @@ export interface Intervals {
   upper: number;
   lowerClose: boolean;
   upperClose: boolean;
+}
+
+export interface StyleOptions {
+  mainIntervalColor?: string;
+  childIntervalColor?: string;
 }
 
 const COLORS = [
