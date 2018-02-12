@@ -9,7 +9,7 @@ Show used intervals on axis
 Import `IntervalsModule` into your app's module.
 
 ###### Module
-```
+```typescript
 import { BrowserModule } from '@angular/platform-browser';
  import { NgModule } from '@angular/core';
  
@@ -32,7 +32,7 @@ import { BrowserModule } from '@angular/platform-browser';
  export class AppModule { }
  ```
  ##### Component
- ```
+ ```typescript
 import {Component} from '@angular/core';
 import {Intervals} from './intervals/intervals.component';
 
