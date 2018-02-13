@@ -68,7 +68,7 @@ export class AppComponent {
 
 # Inputs
 * min - Minimal value of interval
-* max - Maixmal value of interval
+* max - Maximal value of interval
 * intervals - Datas of interval, example:
   ```
   {
