@@ -65,5 +65,35 @@ export class AppComponent {
 ```html
 <intervals [min]="0" [max]="1" [intervals]="intervals"></intervals>
 ```
+
+# Inputs
+* min - Minimal value of interval
+* max - Maixmal value of interval
+* intervals - Datas of interval, example:
+  ```
+  {
+       lower: 0, //lower value
+       lowerClose: true, //is left-closed
+       upper: 0.3456, // upper value
+       upperClose: true //is right-closed
+  }
+  ```
+* tooltip - Show tooltip with interval value. Default: false
+* styleOptions - Object with intervals colors: 
+```
+  {
+    childIntervalColor: 'yellow', // color of added intervals
+    mainIntervalColor: 'white' // color of main container
+  }
+```
+
+```html
+<intervals  [tooltip]="true"
+            [min]="0"
+            [max]="1"
+            [intervals]="intervals"
+            [styleOptions]="{childIntervalColor: 'yellow', mainIntervalColor: 'white'}">
+</intervals>
+```
  
 

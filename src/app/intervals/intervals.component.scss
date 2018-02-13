@@ -16,6 +16,11 @@
       height: 100%;
       border-left: 1px solid black;
       border-right: 1px solid black;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.2;
+        background: black !important;
+      }
     }
   }
 
@@ -32,4 +37,17 @@
   #max {
     @extend .min-max;
   }
+}
+
+.tooltip-interval {
+  border: 1px solid grey;
+  text-align: center;
+  position: fixed;
+  display: none;
+  background: white;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: monospace;
+  border-radius: 10px;
+  padding: 5px;
 }
