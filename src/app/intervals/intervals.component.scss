@@ -2,7 +2,6 @@
   width: 100%;
   display: table;
   .intervals-handler {
-    min-height: 10px;
     width: 90%;
     display: table-cell;
     border: 0.5px solid black;
@@ -28,6 +27,7 @@
     font-weight: bold;
     display: table-cell;
     text-align: center;
+    vertical-align: middle;
   }
 
   #min {

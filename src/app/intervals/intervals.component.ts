@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {isNullOrUndefined} from 'util';
 
 @Component({
@@ -14,8 +14,9 @@ export class IntervalsComponent implements OnInit, AfterViewInit {
   @Input() intervals: Intervals[] = [];
   @Input() styleOptions: StyleOptions = {};
   @Input() tooltip: boolean = false;
-  @ViewChild('intervalsHandler') intervalsHandler;
-  @ViewChild('intervalTooltip') intervalTooltip;
+  @ViewChild('intervalsHandler') intervalsHandler: ElementRef;
+  @ViewChild('intervalTooltip') intervalTooltip: ElementRef;
+  @ViewChild('mainContainer') mainContainer: ElementRef;
   public tooltipText: string;
 
   constructor(private renderer: Renderer2) {
@@ -27,6 +28,7 @@ export class IntervalsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.renderer.setStyle(this.intervalsHandler.nativeElement, 'background', this.styleOptions.mainIntervalColor);
+    this.renderer.setStyle(this.intervalsHandler.nativeElement, 'height', this.styleOptions.mainIntervalHeight + 'px');
     this.addInterval(this.intervals);
   }
 
@@ -62,6 +64,7 @@ export class IntervalsComponent implements OnInit, AfterViewInit {
   private setDefaultStyle() {
     isNullOrUndefined(this.styleOptions.mainIntervalColor) ? this.setOptionValue('mainIntervalColor', 'blue') : null;
     isNullOrUndefined(this.styleOptions.childIntervalColor) ? this.setOptionValue('childIntervalColor', 'red') : null;
+    isNullOrUndefined(this.styleOptions.mainIntervalHeight) ? this.setOptionValue('mainIntervalHeight', '50px') : null;
   }
 
   private setOptionValue(key, value) {
@@ -80,8 +83,14 @@ export class IntervalsComponent implements OnInit, AfterViewInit {
   private intervalMouseEnter = (event) => {
     this.tooltipText = event.target.dataset.interval;
     this.renderer.setStyle(this.intervalTooltip.nativeElement, 'display', 'block');
-    this.renderer.setStyle(this.intervalTooltip.nativeElement, 'top', event.clientY + 'px');
-    this.renderer.setStyle(this.intervalTooltip.nativeElement, 'left', event.clientX + 'px');
+    setTimeout(() => {
+      this.renderer.setStyle(this.intervalTooltip.nativeElement, 'top', event.clientY + 'px');
+      if (event.clientX + this.intervalTooltip.nativeElement.offsetWidth > window.innerWidth) {
+        this.renderer.setStyle(this.intervalTooltip.nativeElement, 'left', (window.innerWidth - this.intervalTooltip.nativeElement.offsetWidth - 25) + 'px');
+      } else {
+        this.renderer.setStyle(this.intervalTooltip.nativeElement, 'left', event.clientX + 'px');
+      }
+    });
   };
 
   private intervalMouseLeave = () => {
@@ -101,6 +110,7 @@ export interface Intervals {
 
 export interface StyleOptions {
   mainIntervalColor?: string;
+  mainIntervalHeight?: string;
   childIntervalColor?: string;
 }
 

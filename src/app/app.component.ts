@@ -20,6 +20,12 @@ export class AppComponent {
       lowerClose: true,
       upper: 0.8234567342,
       upperClose: true
+    },
+    {
+      lower: 0.9,
+      lowerClose: true,
+      upper: 1,
+      upperClose: true
     }
   ];
 }

@@ -79,11 +79,12 @@ export class AppComponent {
   }
   ```
 * tooltip - Show tooltip with interval value. Default: false
-* styleOptions - Object with intervals colors: 
+* styleOptions - Object with intervals colors or height: 
 ```
   {
     childIntervalColor: 'yellow', // color of added intervals
     mainIntervalColor: 'white' // color of main container
+    mainIntervalHeight: '20' // height of main container
   }
 ```
 
@@ -92,7 +93,7 @@ export class AppComponent {
             [min]="0"
             [max]="1"
             [intervals]="intervals"
-            [styleOptions]="{childIntervalColor: 'yellow', mainIntervalColor: 'white'}">
+            [styleOptions]="{childIntervalColor: 'yellow', mainIntervalColor: 'white', mainIntervalHeight: '20'}">
 </intervals>
 ```
  
