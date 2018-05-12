@@ -117,6 +117,86 @@
           }
         }
       }
+    },
+    "firstLib": {
+      "root": "projects/first-lib",
+      "sourceRoot": "projects/first-lib/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/first-lib/tsconfig.lib.json",
+            "project": "projects/first-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/first-lib/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/first-lib/src/test.ts",
+            "tsConfig": "projects/first-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/first-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/first-lib/tsconfig.lib.json",
+              "projects/first-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ng-intervals": {
+      "root": "projects/ng-intervals",
+      "sourceRoot": "projects/ng-intervals/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-intervals/tsconfig.lib.json",
+            "project": "projects/ng-intervals/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/ng-intervals/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-intervals/src/test.ts",
+            "tsConfig": "projects/ng-intervals/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-intervals/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-intervals/tsconfig.lib.json",
+              "projects/ng-intervals/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ranges",

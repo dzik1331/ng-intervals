@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Intervals} from './intervals/intervals.component';
+import {Intervals} from '../../projects/ng-intervals/src/lib/intervals.component';
 
 @Component({
   selector: 'app-root',

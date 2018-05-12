@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import {IntervalsModule} from './intervals/intervals.module';
+import {IntervalsModule} from '../../projects/ng-intervals/src/lib/intervals.module';
 
 
 @NgModule({
