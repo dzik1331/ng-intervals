@@ -11,6 +11,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,6 +28,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -133,7 +140,8 @@
           "configurations": {
             "production": {
               "project": "projects/first-lib/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/first-lib/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {
@@ -173,7 +181,8 @@
           "configurations": {
             "production": {
               "project": "projects/ng-intervals/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/ng-intervals/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {
@@ -203,7 +212,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "style": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "app"
