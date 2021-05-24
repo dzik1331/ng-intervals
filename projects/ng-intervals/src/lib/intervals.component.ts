@@ -14,9 +14,9 @@ export class IntervalsComponent implements OnInit, AfterViewInit {
   @Input() intervals: Intervals[] = [];
   @Input() styleOptions: StyleOptions = {};
   @Input() tooltip: boolean = false;
-  @ViewChild('intervalsHandler') intervalsHandler: ElementRef;
-  @ViewChild('intervalTooltip') intervalTooltip: ElementRef;
-  @ViewChild('mainContainer') mainContainer: ElementRef;
+  @ViewChild('intervalsHandler', { static: true }) intervalsHandler: ElementRef;
+  @ViewChild('intervalTooltip', { static: false }) intervalTooltip: ElementRef;
+  @ViewChild('mainContainer', { static: true }) mainContainer: ElementRef;
   public tooltipText: string;
 
   constructor(private renderer: Renderer2) {
