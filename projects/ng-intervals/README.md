@@ -1,4 +1,4 @@
-# Intervals
+# ng-intervals
 Show used intervals on axis
 
 # Install

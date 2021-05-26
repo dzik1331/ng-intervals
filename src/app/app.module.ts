@@ -1,10 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import {IntervalsModule} from '../../projects/ng-intervals/src/lib/intervals.module';
-
+import {NgIntervalsModule} from "../../projects/ng-intervals/src/lib/ng-intervals.module";
 
 @NgModule({
   declarations: [
@@ -12,7 +10,7 @@ import {IntervalsModule} from '../../projects/ng-intervals/src/lib/intervals.mod
   ],
   imports: [
     BrowserModule,
-    IntervalsModule
+    NgIntervalsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

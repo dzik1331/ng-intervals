@@ -1,25 +1,26 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {isNullOrUndefined} from 'util';
+import {NgIntervalsService} from "./ng-intervals.service";
 
 @Component({
   selector: 'intervals',
-  templateUrl: './intervals.component.html',
-  styleUrls: ['./intervals.component.scss']
+  templateUrl: './ng-intervals.component.html',
+  styleUrls: ['./ng-intervals.component.scss']
 })
 
 
-export class IntervalsComponent implements OnInit, AfterViewInit {
-  @Input() min: number;
-  @Input() max: number;
+export class NgIntervalsComponent implements OnInit, AfterViewInit {
+  @Input() min!: number;
+  @Input() max!: number;
   @Input() intervals: Intervals[] = [];
   @Input() styleOptions: StyleOptions = {};
   @Input() tooltip: boolean = false;
-  @ViewChild('intervalsHandler', { static: true }) intervalsHandler: ElementRef;
-  @ViewChild('intervalTooltip') intervalTooltip: ElementRef;
-  @ViewChild('mainContainer', { static: true }) mainContainer: ElementRef;
-  public tooltipText: string;
+  @ViewChild('intervalsHandler', {static: true}) intervalsHandler!: ElementRef;
+  @ViewChild('intervalTooltip', {static: false}) intervalTooltip!: ElementRef;
+  @ViewChild('mainContainer', {static: true}) mainContainer!: ElementRef;
+  public tooltipText!: string | null;
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2,
+              private intervalsService: NgIntervalsService) {
   }
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class IntervalsComponent implements OnInit, AfterViewInit {
     this.addInterval(this.intervals);
   }
 
-  private addInterval(intervals) {
+  private addInterval(intervals: Intervals[]) {
     intervals.forEach((interval: Intervals) => {
       let intervalDiv = this.renderer.createElement('div');
 
@@ -52,7 +53,7 @@ export class IntervalsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private setTooltip(intervalDiv, interval) {
+  private setTooltip(intervalDiv: any, interval: any) {
     if (this.tooltip) {
       intervalDiv.dataset.interval = this.setBrackets('down', interval.lowerClose) + interval.lower + ';' + interval.upper +
         this.setBrackets('up', interval.upperClose);
@@ -62,25 +63,27 @@ export class IntervalsComponent implements OnInit, AfterViewInit {
   }
 
   private setDefaultStyle() {
-    isNullOrUndefined(this.styleOptions.mainIntervalColor) ? this.setOptionValue('mainIntervalColor', 'blue') : null;
-    isNullOrUndefined(this.styleOptions.childIntervalColor) ? this.setOptionValue('childIntervalColor', 'red') : null;
-    isNullOrUndefined(this.styleOptions.mainIntervalHeight) ? this.setOptionValue('mainIntervalHeight', '50px') : null;
+    this.intervalsService.isNullOrUndefined(this.styleOptions.mainIntervalColor) ? this.setOptionValue('mainIntervalColor', 'blue') : null;
+    this.intervalsService.isNullOrUndefined(this.styleOptions.childIntervalColor) ? this.setOptionValue('childIntervalColor', 'red') : null;
+    this.intervalsService.isNullOrUndefined(this.styleOptions.mainIntervalHeight) ? this.setOptionValue('mainIntervalHeight', '50px') : null;
   }
 
-  private setOptionValue(key, value) {
+  private setOptionValue(key: string, value: any) {
+    // @ts-ignore
     this.styleOptions[key] = value;
   }
 
-  private setBrackets(type, value) {
+  private setBrackets(type: string, value: any) {
     switch (type) {
       case 'down':
         return value ? '< ' : '( ';
       case 'up':
         return value ? ' >' : ' )';
     }
+    return null;
   }
 
-  private intervalMouseEnter = (event) => {
+  private intervalMouseEnter = (event: any) => {
     this.tooltipText = event.target.dataset.interval;
     this.renderer.setStyle(this.intervalTooltip.nativeElement, 'display', 'block');
     setTimeout(() => {
